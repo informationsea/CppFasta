@@ -57,3 +57,5 @@ frozenhashmap-*.tar.*
 log.txt
 
 tmp/
+Doxyfile
+doc/
