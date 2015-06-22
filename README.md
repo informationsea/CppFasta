@@ -1,4 +1,4 @@
-CppFasta
+CppFasta [![Build Status](https://travis-ci.org/informationsea/CppFasta.svg?branch=master)](https://travis-ci.org/informationsea/CppFasta)
 ========
 
 FASTA and FASTQ File Parser for C++
