@@ -1,0 +1,6 @@
+/tmp/
+.dirstamp
+*.log
+*.trs
+test_fasta
+test_filereader
