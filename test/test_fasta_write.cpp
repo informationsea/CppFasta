@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "cppfasta.hpp"
+#include <limits.h>
 
 using namespace cppfasta;
 
