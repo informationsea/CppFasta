@@ -13,9 +13,9 @@ namespace cppfasta {
         BasicReader *reader;
         const char *extension = strrchr(filepath, '.');
         
-        if (strcmp(".gz", extension) == 0) {
+        if (extension && strcmp(".gz", extension) == 0) {
             reader = new GzipReader;
-        } else if (strcmp(".bz2", extension) == 0) {
+        } else if (extension && strcmp(".bz2", extension) == 0) {
             reader = new Bzip2Reader;
         } else {
             reader = new FileReader;

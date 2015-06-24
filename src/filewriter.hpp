@@ -16,6 +16,8 @@ namespace cppfasta {
 
         virtual bool open(const char *filepath) = 0;
         virtual bool write(const void* data, size_t length) = 0;
+        virtual bool write(const char *str);
+        virtual bool write(const std::string &str);
         virtual bool printf(const char *format, ...);
     };
 

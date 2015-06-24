@@ -6,6 +6,7 @@
 namespace cppfasta {
 
     class BasicReader;
+    class BasicWriter;
 
     class SequenceRecord
     {
@@ -20,6 +21,14 @@ namespace cppfasta {
         const std::string& sequence() const {return m_sequence;}
         const std::string& quality() const {return m_quality;}
         bool hasQuality() const {return m_hasQuality;}
+
+        bool operator==(const SequenceRecord &record) const {
+            if (record.m_name != m_name) return false;
+            if (record.m_sequence != m_sequence) return false;
+            if (record.m_hasQuality != m_hasQuality) return false;
+            if (record.m_quality != m_quality) return false;
+            return true;
+        }
         
     private:
         std::string m_name;
@@ -84,6 +93,28 @@ namespace cppfasta {
         virtual void loadNext();
     };
 
+
+    class FastxWriter
+    {
+    public:
+        FastxWriter() : m_writer(0) {};
+        virtual ~FastxWriter();
+
+        virtual bool open(const char *filepath);
+        virtual bool write(const SequenceRecord& record) = 0;
+
+    protected:
+        BasicWriter *m_writer;
+    };
+
+    class FastqWriter : public FastxWriter
+    {
+    public:
+        FastqWriter() {};
+        virtual ~FastqWriter() {};
+
+        virtual bool write(const SequenceRecord& record);
+    };
 }
 
 #endif /* CPPFASTA_H */

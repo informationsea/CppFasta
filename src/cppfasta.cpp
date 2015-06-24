@@ -1,5 +1,6 @@
 #include "cppfasta.hpp"
 #include "filereader.hpp"
+#include "filewriter.hpp"
 #include <string>
 #include <sstream>
 
@@ -90,5 +91,28 @@ namespace cppfasta {
         return;
     finish:
         m_nextRecord = NULL;
+    }
+
+
+    FastxWriter::~FastxWriter()
+    {
+        delete m_writer;
+    }
+
+    bool FastxWriter::open(const char *filepath)
+    {
+        m_writer = openFileForWrite(filepath);
+        return m_writer != NULL;
+    }
+
+    
+    bool FastqWriter::write(const SequenceRecord& record)
+    {
+        if (!m_writer->printf("@%s\n", record.name().c_str())) return false;
+        if (!m_writer->write(record.sequence())) return false;
+        if (!m_writer->write("\n+\n")) return false;
+        if (!m_writer->write(record.quality())) return false;
+        if (!m_writer->write("\n")) return false;
+        return true;
     }
 }

@@ -57,11 +57,16 @@ void common_test(const char *suffix)
     BasicWriter *writer = openFileForWrite(tempfilepath);
     writer->printf("Hello %s\n", "World");
     writer->printf("%04x\n", 0xa7);
+    writer->write("Hello\n");
+    writer->write(std::string("World\n"));
     delete writer;
 
     BasicReader *reader = openFile(tempfilepath);
     ASSERT_EQ(0, reader->readLine().compare("Hello World\n"));
     ASSERT_EQ(0, reader->readLine().compare("00a7\n"));
+    ASSERT_EQ(0, reader->readLine().compare("Hello\n"));
+    ASSERT_EQ(0, reader->readLine().compare("World\n"));
+    ASSERT_EQ(0, reader->readLine().compare(""));
 
     unlink(tempfilepath);
     rmdir("tmp");

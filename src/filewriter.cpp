@@ -1,9 +1,20 @@
 #include "filewriter.hpp"
 
+#include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
 
 namespace cppfasta {
+
+    bool BasicWriter::write(const char *str)
+    {
+        return write(str, strlen(str));
+    }
+    
+    bool BasicWriter::write(const std::string &str)
+    {
+        return write(str.c_str(), str.size());
+    }
 
     bool BasicWriter::printf(const char *format, ...)
     {
@@ -80,9 +91,9 @@ namespace cppfasta {
         BasicWriter *writer;
         const char *extension = strrchr(filepath, '.');
         
-        if (strcmp(".gz", extension) == 0) {
+        if (extension && strcmp(".gz", extension) == 0) {
             writer = new GzipWriter;
-        } else if (strcmp(".bz2", extension) == 0) {
+        } else if (extension && strcmp(".bz2", extension) == 0) {
             writer = new Bzip2Writer;
         } else {
             writer = new FileWriter;

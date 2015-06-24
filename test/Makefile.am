@@ -7,6 +7,6 @@ TESTS = $(noinst_PROGRAMS)
 
 LDADD = -lpthread $(top_builddir)/src/libcppfasta.la $(top_builddir)/test/gtest/libgtest.la
 
-test_fasta_SOURCES = test_fasta.cpp
+test_fasta_SOURCES = test_fasta.cpp test_fasta_write.cpp
 test_filereader_SOURCES = test_filereader.cpp
 test_filewriter_SOURCES = test_filewriter.cpp
