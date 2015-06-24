@@ -4,3 +4,4 @@
 *.trs
 test_fasta
 test_filereader
+test_filewriter
