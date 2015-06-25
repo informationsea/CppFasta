@@ -115,6 +115,18 @@ namespace cppfasta {
 
         virtual bool write(const SequenceRecord& record);
     };
+
+    class FastaWriter : public FastxWriter
+    {
+    public:
+        FastaWriter(size_t lineLenght = 80) : m_lineLength(lineLenght){}
+        virtual ~FastaWriter(){}
+
+        virtual bool write(const SequenceRecord& record);
+    private:
+        size_t m_lineLength;
+    };
+
 }
 
 #endif /* CPPFASTA_H */

@@ -4,6 +4,8 @@
 #include <string>
 #include <sstream>
 
+#define MIN(a, b) ((a) > (b) ? (b) : (a))
+
 namespace cppfasta {
 
     FastxReader::~FastxReader() {
@@ -113,6 +115,23 @@ namespace cppfasta {
         if (!m_writer->write("\n+\n")) return false;
         if (!m_writer->write(record.quality())) return false;
         if (!m_writer->write("\n")) return false;
+        return true;
+    }
+
+    bool FastaWriter::write(const SequenceRecord& record)
+    {
+        if (!m_writer->printf(">%s\n", record.name().c_str())) return false;
+
+        const char *seq = record.sequence().c_str();
+        size_t seqlen = record.sequence().size();
+        size_t curpos = 0;
+        do {
+            size_t writingBytes = MIN(seqlen - curpos, m_lineLength);
+            if (!m_writer->write(seq + curpos, writingBytes)) return false;
+            if (!m_writer->write("\n")) return false;
+            curpos += writingBytes;
+        } while(curpos < seqlen);
+        
         return true;
     }
 }
