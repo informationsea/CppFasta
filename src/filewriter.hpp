@@ -25,6 +25,7 @@ namespace cppfasta {
     {
     public:
         FileWriter() : m_file(0) {};
+        FileWriter(std::FILE file) : m_file(file) {}
         virtual ~FileWriter();
 
         virtual bool open(const char *filepath);
