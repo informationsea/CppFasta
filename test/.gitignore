@@ -3,5 +3,6 @@
 *.log
 *.trs
 test_fasta
+test_fasta2
 test_filereader
 test_filewriter
