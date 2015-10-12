@@ -14,6 +14,18 @@ namespace cppfasta {
         char name[CPPFASTA_MAXIMUM_SEQUENCE_LENGTH];
         char sequence[CPPFASTA_MAXIMUM_SEQUENCE_LENGTH];
         char quality[CPPFASTA_MAXIMUM_SEQUENCE_LENGTH];
+
+        SequenceRecord2() {}
+        
+        SequenceRecord2(const char *name, const char *sequence, const char *quality = "") {
+            bzero(this->name, sizeof(this->name));
+            bzero(this->sequence, sizeof(this->sequence));
+            bzero(this->quality, sizeof(this->quality));
+            
+            strncpy(this->name, name, CPPFASTA_MAXIMUM_SEQUENCE_LENGTH-1);
+            strncpy(this->sequence, sequence, CPPFASTA_MAXIMUM_SEQUENCE_LENGTH-1);
+            strncpy(this->quality, quality, CPPFASTA_MAXIMUM_SEQUENCE_LENGTH-1);
+        }
     };
 
     class FastqReader2
