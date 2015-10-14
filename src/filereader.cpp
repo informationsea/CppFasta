@@ -56,6 +56,14 @@ namespace cppfasta {
             return false;
         return true;
     }
+    
+    bool FileReader::open(FILE *file)
+    {
+        if (m_file) return false;
+        m_file = file;
+        if (m_file == NULL) return false;
+        return true;
+    }
 
     char *FileReader::fgets(char * str, int size)
     {

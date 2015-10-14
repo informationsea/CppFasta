@@ -60,6 +60,17 @@ TEST(FILEREADER, FILE) {
     FileReader reader2;
     ASSERT_TRUE(reader2.open("data/linedata.txt"));
     common_test2(&reader2);
+
+    FileReader reader3;
+    FILE *f = fopen("data/DRR000035_head100.fastq", "r");
+    ASSERT_TRUE(f);
+    ASSERT_TRUE(reader3.open(f));
+
+    {
+        SCOPED_TRACE("read data 3");
+        common_test(&reader3);
+    }
+
 }
 
 TEST(FILEREADER, GZIP) {

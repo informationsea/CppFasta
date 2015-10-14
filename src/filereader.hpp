@@ -28,6 +28,7 @@ namespace cppfasta {
         virtual ~FileReader();
 
         virtual bool open(const char *filepath);
+        virtual bool open(FILE *file);
         virtual char *fgets(char * str, int size);
     
     private:
