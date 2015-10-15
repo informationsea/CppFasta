@@ -5,7 +5,7 @@
 #include <string.h>
 
 #ifndef CPPFASTA_MAXIMUM_SEQUENCE_LENGTH
-#define CPPFASTA_MAXIMUM_SEQUENCE_LENGTH 128
+#define CPPFASTA_MAXIMUM_SEQUENCE_LENGTH 200
 #endif
 
 namespace cppfasta {
