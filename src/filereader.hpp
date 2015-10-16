@@ -24,7 +24,7 @@ namespace cppfasta {
     class FileReader : public BasicReader
     {
     public:
-        FileReader() : m_file(0){};
+        FileReader() : m_file(0), autoclose(true){};
         virtual ~FileReader();
 
         virtual bool open(const char *filepath);
@@ -33,6 +33,7 @@ namespace cppfasta {
     
     private:
         std::FILE *m_file;
+        bool autoclose;
     };
 
 

@@ -45,7 +45,8 @@ namespace cppfasta {
 
     FileReader::~FileReader()
     {
-        fclose(m_file);
+        if (autoclose)
+            fclose(m_file);
     }
 
     bool FileReader::open(const char *filepath)
@@ -62,6 +63,7 @@ namespace cppfasta {
         if (m_file) return false;
         m_file = file;
         if (m_file == NULL) return false;
+        autoclose = false;
         return true;
     }
 
