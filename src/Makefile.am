@@ -7,6 +7,4 @@ libcppfasta_la_LIBADD = -lz -lbz2
 
 libcppfasta_la_includedir = $(includedir)/cppfasta
 libcppfasta_la_include_HEADERS = \
-	cppfasta.hpp filereader.hpp
-
-
+	cppfasta.hpp filereader.hpp filewriter.hpp cppfasta2.hpp
