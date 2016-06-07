@@ -82,7 +82,7 @@ namespace cppfasta {
         char *temp = new char[length];
         memcpy(temp, data, length);
         bool success = BZ2_bzwrite(m_file, temp, length) == (int)length;
-        delete temp;
+        delete [] temp;
         return success;
     }
 
